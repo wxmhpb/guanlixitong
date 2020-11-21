@@ -1,0 +1,59 @@
+#\u914D\u7F6E\u6570\u636E\u6E90\u7684\u5C5E\u6027
+spring:
+  thymeleaf:
+    enabled: true  #\u5F00\u542Fthymeleaf\u89C6\u56FE\u89E3\u6790
+    prefix: classpath:/templates/  #\u524D\u7F00
+    mode: HTML  #\u4E25\u683C\u7684HTML\u8BED\u6CD5\u6A21\u5F0F
+    suffix: .html  #\u540E\u7F00\u540D
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://8.129.176.154:3307/0520erp?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=UTC
+    username: root
+    password: root
+    max-active: 20
+    max-wait: 5000
+    initial-size: 1
+    filters: stat,log4j,wall
+    validationQuery: SELECT 'x'   #\u9A8C\u8BC1\u8FDE\u63A5
+    enable: true
+    #\u76D1\u63A7\u914D\u7F6E
+    stat-view-servlet:
+      enabled: true
+      login-username: root
+      login-password: 123456
+      allow:
+      deny:
+      url-pattern: /druid/*
+  #      web-stat-filter:
+  #        enabled: true
+  #        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+#\u914D\u7F6Emybatisplus
+mybatis-plus:
+  mapper-locations:
+    - classpath:mapper/*Mapper.xml
+  global-config:
+    db-config:
+      id-type: auto
+    banner: true
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+#shiro\u7684\u914D\u7F6E
+shiro:
+  hash-algorithm-name: md5
+  hash-iterations: 2
+  anon-urls:
+    - /index.html*
+    - /sys/toLogin*
+    - /login/login*
+    - /resources/**
+  login-url: /index.html
+  log-out-url: /login/logout*
+  authc-ulrs:
+    - /**
+
+
